@@ -32,7 +32,7 @@ DefaultDirName={pf}\LEGO Media\Games\{#MyAppNameNoR}
 DefaultGroupName=LEGO Media\{#MyAppNameNoR}
 AllowNoIcons=yes
 
-SetupIconFile=RRicon5.ico
+SetupIconFile=rockraiders.ico
 WizardImageFile=Sidebar.bmp
 WizardSmallImageFile=Small-Image.bmp
 WizardImageStretch=True
@@ -42,10 +42,9 @@ OutputDir=bin
 OutputBaseFilename={#MyAppNameNoR} Alternate Installer {#MyAppInstallerVersion}
 
 UninstallFilesDir={app}
-UninstallDisplayIcon=RRicon5.ico
-CreateUninstallRegKey=yes
 UninstallDisplayName={#MyAppName}
-
+UninstallDisplayIcon={app}\rockraiders.ico
+CreateUninstallRegKey=yes
 ; This is required so Inno can correctly report the installation size
 UninstallDisplaySize=112820029
 
@@ -76,7 +75,7 @@ Source: "Tools\CABExtract\i5comp.exe"; DestDir: "{app}"; Flags: deleteafterinsta
 Source: "Tools\CABExtract\ZD51145.DLL"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "Tools\post-install.bat"; DestDir: "{app}"; Flags: deleteafterinstall
 
-Source: "RRIcon5.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "rockraiders.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 
@@ -87,9 +86,9 @@ Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}\EXE"; Flags: exte
 Source: "{code:GetSourceDrive}DirectX6\DirectX6\Directx\D3DRM.DLL"; DestDir: "{app}"; Flags: external ignoreversion
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\RRIcon5.ico"; Comment: "Run {#MyAppName}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\RRIcon5.ico";
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\RRIcon5.ico"; Comment: "{#MyAppName}"; Tasks: desktopicon
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\rockraiders.ico"; Comment: "Run {#MyAppName}"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\rockraiders.ico";
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\rockraiders.ico"; Comment: "{#MyAppName}"; Tasks: desktopicon
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
@@ -111,11 +110,14 @@ Name: "{app}\Data\Saves"; Flags: uninsneveruninstall
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files],
 ; this is required to delete them
+Type: files; Name: "{app}\*.dat"
 Type: files; Name: "{app}\*.exe"
 Type: files; Name: "{app}\*.icd"
+Type: files; Name: "{app}\*.txt"
 Type: files; Name: "{app}\LegoRR0.wad"
 Type: files; Name: "{app}\LegoRR1.wad"
-Type: files; Name: "{app}\Readme.txt"
+Type: filesandordirs; Name: "{app}\Data\AVI"
+Type: filesandordirs; Name: "{app}\Data\Sounds"
 
 [Code]
 // Pascal script from Bgbennyboy to detect a CD, cleaned up
