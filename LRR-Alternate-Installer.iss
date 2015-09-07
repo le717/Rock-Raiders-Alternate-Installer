@@ -33,7 +33,7 @@ DefaultGroupName=LEGO Media\{#MyAppNameNoR}
 AllowNoIcons=yes
 ; Installer Graphics
 SetupIconFile=RRicon5.ico
-; WizardImageFile=Sidebar.bmp
+WizardImageFile=Sidebar.bmp
 WizardSmallImageFile=Small-Image.bmp
 WizardImageStretch=True
 WizardImageBackColor=clBlack
