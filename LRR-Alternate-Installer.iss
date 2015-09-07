@@ -33,7 +33,7 @@ DefaultGroupName=LEGO Media\{#MyAppNameNoR}
 AllowNoIcons=yes
 ; Installer Graphics
 SetupIconFile=RRicon5.ico
-WizardImageFile=Sidebar.bmp
+; WizardImageFile=Sidebar.bmp
 WizardSmallImageFile=Small-Image.bmp
 WizardImageStretch=True
 WizardImageBackColor=clBlack
@@ -70,37 +70,25 @@ English.WelcomeLabel2=This will install [name] on your computer.%n%nIt is recomm
 ; an incorrect installation size.
 English.DiskSpaceMBLabel=
 
-; Both Types and Components sections are required
-; to create the installation options.
-[Types]
-Name: "Full"; Description: "Full Installation (With Movies)"  
-Name: "Minimal"; Description: "Minimal Installation (Without Movies)"
-
-[Components]
-Name: "Full"; Description: "Full Installation (With Movies)"; Types: Full
-Name: "Minimal"; Description: "Minimal Installation (Without Movies)"; Types: Minimal
-
 [Files]
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i5comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "Tools\CABExtract\ZD51145.DLL"; DestDir: "{app}"; Flags: deleteafterinstall
 
 ; Manual, icon, license
-Source: "manual.pdf"; DestDir: "{app}"; Components: Full Minimal; Flags: ignoreversion skipifsourcedoesntexist
-Source: "RRIcon5.ico"; DestDir: "{app}"; Components: Full Minimal; Flags: ignoreversion
-Source: "license.txt"; DestDir: "{app}"; Components: Full Minimal; Flags: ignoreversion
+Source: "RRIcon5.ico"; DestDir: "{app}"; Flags: ignoreversion
+Source: "license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 
 ; Standard files
-Source: "{code:GetSourceDrive}data1.cab"; DestDir: "{app}"; Components: Full Minimal; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}data1.hdr"; DestDir: "{app}"; Components: Full Minimal; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}EXE\LegoRR.exe"; DestDir: "{app}"; Components: Full Minimal; Flags: external ignoreversion skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}"; Components: Full Minimal; Flags: external ignoreversion skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}redist\directx\d3drm.dll"; DestDir: "{app}"; Components: Full Minimal; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}data1.cab"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}data1.hdr"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}EXE\LegoRR.exe"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}redist\directx\d3drm.dll"; DestDir: "{app}"; Flags: external ignoreversion
 
 [Icons]
 ; First and last icons are created only if user choose not to use the videos,
-; else the normal ones are created.
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\RRIcon5.ico"; Comment: "Run {#MyAppName}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\RRIcon5.ico";
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\RRIcon5.ico"; Comment: "{#MyAppName}"; Tasks: desktopicon
@@ -111,14 +99,12 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Registry]
-; Registry strings are always hard-coded (!No ISPP functions!) 
-; to ensure everything works properly.
 Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\LegoRR.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
 
 [Run]
 ; From to to bottom: Extract the CAB, run game 
 Filename: "{app}\i5comp.exe"; Parameters: "x ""{app}\DATA1.CAB"""; Flags: runascurrentuser
-Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Components: Full
+Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}";
 
 [Dirs]
 ; Created to ensure the save games are not removed
@@ -136,7 +122,7 @@ Type: files; Name: "{app}\Data\cd.key"
 
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files], 
-; this is needed to delete them.
+; this is required to delete them.
 Type: files; Name: "{app}\*.exe"
 Type: files; Name: "{app}\*.icd"
 Type: files; Name: "{app}\LegoRR0.wad"

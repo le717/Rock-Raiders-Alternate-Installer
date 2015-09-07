@@ -16,7 +16,7 @@ var
 	external 'GetLogicalDriveStringsA@kernel32.dll stdcall';
 
 const
-	UniqueFile = 'RRicon5.ico';
+	UniqueFile = 'EXE/LegoRR.exe';
 
 
 	DRIVE_UNKNOWN = 0; // The drive type cannot be determined.
