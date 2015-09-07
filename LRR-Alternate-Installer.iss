@@ -1,5 +1,5 @@
 ﻿; LEGO Rock Raiders Alternate Installer
-; Created 2013-2014 Triangle717
+; Created 2013-2015 Triangle717
 ; <http://Triangle717.WordPress.com/>
 ; Contains source code from Grim Fandango Setup
 ; Copyright (c) 2007-2008 Bgbennyboy
@@ -86,7 +86,7 @@ Source: "Tools\CABExtract\i5comp.exe"; DestDir: "{app}"; Flags: deleteafterinsta
 Source: "Tools\CABExtract\ZD51145.DLL"; DestDir: "{app}"; Flags: deleteafterinstall
 
 ; Manual, icon, license
-Source: "US Manual.pdf"; DestDir: "{app}"; Components: Full Minimal; Flags: ignoreversion skipifsourcedoesntexist
+Source: "manual.pdf"; DestDir: "{app}"; Components: Full Minimal; Flags: ignoreversion skipifsourcedoesntexist
 Source: "RRIcon5.ico"; DestDir: "{app}"; Components: Full Minimal; Flags: ignoreversion
 Source: "license.txt"; DestDir: "{app}"; Components: Full Minimal; Flags: ignoreversion
 Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
