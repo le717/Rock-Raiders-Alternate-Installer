@@ -5,7 +5,7 @@
 ; Copyright (c) 2007-2008 Bgbennyboy
 ; <http://quick.mixnmojo.com/>
 
-; If any version below the specified version is used for compiling, 
+; If any version below the specified version is used for compiling,
 ; this error will be shown.
 #if VER < EncodeVer(5, 5, 2)
   #error You must use Inno Setup 5.5.2 or newer to compile this script
@@ -27,33 +27,33 @@ VersionInfoVersion={#MyAppInstallerVersion}
 AppPublisher={#MyAppPublisher}
 AppCopyright=(C) 1999 {#MyAppPublisher}
 LicenseFile=license.txt
-; Start menu/screen and Desktop shortcuts
+
 DefaultDirName={pf}\LEGO Media\Games\{#MyAppNameNoR}
 DefaultGroupName=LEGO Media\{#MyAppNameNoR}
 AllowNoIcons=yes
-; Installer Graphics
+
 SetupIconFile=RRicon5.ico
 WizardImageFile=Sidebar.bmp
 WizardSmallImageFile=Small-Image.bmp
 WizardImageStretch=True
 WizardImageBackColor=clBlack
-; Location of the compiled Exe
+
 OutputDir=bin
 OutputBaseFilename={#MyAppNameNoR} Alternate Installer {#MyAppInstallerVersion}
-; Uninstallation stuff
+
 UninstallFilesDir={app}
 UninstallDisplayIcon=RRicon5.ico
 CreateUninstallRegKey=yes
 UninstallDisplayName={#MyAppName}
-; This is required so Inno can correctly report the installation size.
+
+; This is required so Inno can correctly report the installation size
 UninstallDisplaySize=112820029
-; Compression
+
 Compression=lzma2/ultra64
 SolidCompression=yes
 InternalCompressLevel=ultra
 LZMAUseSeparateProcess=yes
-; From top to bottom:
-; Explicitly set Admin rights, no other languages, do not restart upon finish.
+
 PrivilegesRequired=admin
 ShowLanguageDialog=no
 RestartIfNeededByRun=no
@@ -64,10 +64,10 @@ Name: "English"; MessagesFile: "compiler:Default.isl"
 [Messages]
 English.BeveledLabel={#MyAppInstallerName}
 ; WelcomeLabel2 is overridden because I'm unsure if every LEGO Rock Raiders
-; disc says version 1.0.0.0 or just mine.
+; disc says version 1.0.0.0 or just mine
 English.WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended that you close all other applications before continuing.
 ; DiskSpaceMBLabel is overridden because it reports
-; an incorrect installation size.
+; an incorrect installation size
 English.DiskSpaceMBLabel=
 
 [Files]
@@ -87,7 +87,6 @@ Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}\EXE"; Flags: exte
 Source: "{code:GetSourceDrive}DirectX6\DirectX6\Directx\D3DRM.DLL"; DestDir: "{app}"; Flags: external ignoreversion
 
 [Icons]
-; First and last icons are created only if user choose not to use the videos,
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\RRIcon5.ico"; Comment: "Run {#MyAppName}"
 Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\RRIcon5.ico";
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\RRIcon5.ico"; Comment: "{#MyAppName}"; Tasks: desktopicon
@@ -106,12 +105,12 @@ Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runasc
 
 [Dirs]
 ; Created to ensure the save games are not removed
-; (which should never ever happen).
+; (which should never ever happen)
 Name: "{app}\Data\Saves"; Flags: uninsneveruninstall
 
 [UninstallDelete]
-; Because the files came from a CAB were not installed from [Files], 
-; this is required to delete them.
+; Because the files came from a CAB were not installed from [Files],
+; this is required to delete them
 Type: files; Name: "{app}\*.exe"
 Type: files; Name: "{app}\*.icd"
 Type: files; Name: "{app}\LegoRR0.wad"
@@ -119,8 +118,8 @@ Type: files; Name: "{app}\LegoRR1.wad"
 Type: files; Name: "{app}\Readme.txt"
 
 [Code]
-// Pascal script from Bgbennyboy to pull files off a CD, greatly trimmed up 
-// and modified to support ANSI and Unicode Inno Setup by Triangle717.
+// Pascal script from Bgbennyboy to detect a CD, cleaned up
+// and modified to support ANSI and Unicode Inno Setup
 var
 	SourceDrive: string;
 
