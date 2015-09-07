@@ -28,7 +28,7 @@ AppPublisher={#MyAppPublisher}
 AppCopyright=(C) 1999 {#MyAppPublisher}
 LicenseFile=license.txt
 ; Start menu/screen and Desktop shortcuts
-DefaultDirName={pf}\LEGO Media\Games\{#MyAppName}
+DefaultDirName={pf}\LEGO Media\Games\{#MyAppNameNoR}
 DefaultGroupName=LEGO Media\{#MyAppNameNoR}
 AllowNoIcons=yes
 ; Installer Graphics
@@ -49,7 +49,7 @@ UninstallDisplayName={#MyAppName}
 UninstallDisplaySize=112820029
 ; Compression
 Compression=lzma2/ultra64
-SolidCompression=True
+SolidCompression=yes
 InternalCompressLevel=ultra
 LZMAUseSeparateProcess=yes
 ; From top to bottom:
@@ -74,18 +74,17 @@ English.DiskSpaceMBLabel=
 ; Tool needed to extract the CAB
 Source: "Tools\CABExtract\i5comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "Tools\CABExtract\ZD51145.DLL"; DestDir: "{app}"; Flags: deleteafterinstall
+Source: "Tools\post-install.bat"; DestDir: "{app}"; Flags: deleteafterinstall
 
-; Manual, icon, license
 Source: "RRIcon5.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
 
-; Standard files
 Source: "{code:GetSourceDrive}data1.cab"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
 Source: "{code:GetSourceDrive}data1.hdr"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}EXE\LegoRR.exe"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}redist\directx\d3drm.dll"; DestDir: "{app}"; Flags: external ignoreversion
+Source: "{code:GetSourceDrive}EXE\LegoRR.exe"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}DirectX6\DirectX6\Directx\D3DRM.DLL"; DestDir: "{app}"; Flags: external ignoreversion
 
 [Icons]
 ; First and last icons are created only if user choose not to use the videos,
@@ -94,7 +93,6 @@ Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; 
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\RRIcon5.ico"; Comment: "{#MyAppName}"; Tasks: desktopicon
 
 [Tasks]
-; Create a desktop icon, run with administrator rights
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
@@ -102,23 +100,14 @@ Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupD
 Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\LegoRR.exe"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
 
 [Run]
-; From to to bottom: Extract the CAB, run game 
 Filename: "{app}\i5comp.exe"; Parameters: "x ""{app}\DATA1.CAB"""; Flags: runascurrentuser
-Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}";
+Filename: "{app}\post-install.bat"; WorkingDir: "{app}"
+Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
 
 [Dirs]
 ; Created to ensure the save games are not removed
 ; (which should never ever happen).
 Name: "{app}\Data\Saves"; Flags: uninsneveruninstall
-
-[InstallDelete]
-; Various unneeded files
-Type: filesandordirs; Name: "DirectX6"
-Type: filesandordirs; Name: "Registration"
-Type: files; Name: "Autorun.exe"
-Type: files; Name: "Autorun.inf"
-Type: files; Name: "{app}\Data\Delme.dat"
-Type: files; Name: "{app}\Data\cd.key"
 
 [UninstallDelete]
 ; Because the files came from a CAB were not installed from [Files], 
