@@ -9,4 +9,4 @@ to pull the files off the disc, modified by Triangle717 to support ANSI and Unic
 This projetct also uses the *InstallShield v5.x Compression and Maintenance util* (`i5comp.exe`, `ZD51145.DLL`) to extract
 the InstallShield CAB archive. It was taken from [*Universal Extractor*](legroom.net/software/uniextract) by [LegRoom.net](http://legroom.net).
 
-Created 2013-2014 [Triangle717](http://Triangle717.WordPress.com).
+Created 2013-2015 [Triangle717](http://Triangle717.WordPress.com).
