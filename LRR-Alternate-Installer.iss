@@ -13,7 +13,7 @@
 
 #define MyAppInstallerName "LEGO® Rock Raiders Alternate Installer"
 #define MyAppInstallerVersion "1.0.0"
-#define MyAppName "LEGO® Rock Raiders "
+#define MyAppName "LEGO® Rock Raiders"
 #define MyAppNameNoR "LEGO Rock Raiders"
 #define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "LEGO Media"
