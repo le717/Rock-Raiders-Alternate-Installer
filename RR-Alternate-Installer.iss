@@ -15,9 +15,8 @@
 #define MyAppInstallerName "LEGO Rock Raiders Alternate Installer"
 #define MyAppInstallerVersion "1.0.0"
 #define MyAppName "LEGO Rock Raiders"
-#define MyAppNameNoR "LEGO Rock Raiders"
 #define MyAppVersion "1.0.0.0"
-#define MyAppPublisher "Digitial Design Interactive"
+#define MyAppPublisher "Digital Design Interactive"
 #define MyAppExeName "LegoRR.exe"
 
 [Setup]
@@ -73,7 +72,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-; Tool needed to extract the CAB
+Source: "{code:GetSourceDrive}\data1.cab"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}\data1.hdr"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}\EXE\LegoRR.exe"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
+Source: "{code:GetSourceDrive}\EXE\LegoRR.icd"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
+; TODO Use DLL from Cafeteria
+Source: "{code:GetSourceDrive}\DirectX6\DirectX6\Directx\D3DRM.DLL"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
+
 Source: "Tools\CABExtract\i5comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "Tools\CABExtract\ZD51145.DLL"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "Tools\post-install.bat"; DestDir: "{app}"; Flags: deleteafterinstall
@@ -81,12 +86,6 @@ Source: "Tools\post-install.bat"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "rockraiders.ico"; DestDir: "{app}"; Flags: ignoreversion
 Source: "license.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Readme.txt"; DestDir: "{app}"; Flags: ignoreversion
-
-Source: "{code:GetSourceDrive}data1.cab"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}data1.hdr"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}EXE\LegoRR.exe"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
-Source: "{code:GetSourceDrive}DirectX6\DirectX6\Directx\D3DRM.DLL"; DestDir: "{app}"; Flags: external ignoreversion
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\rockraiders.ico"; IconIndex: 0; Comment: "Run {#MyAppName}"
@@ -98,7 +97,7 @@ Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFla
 
 [Run]
 Filename: "{app}\i5comp.exe"; Parameters: "x ""{app}\DATA1.CAB"""; Flags: runascurrentuser
-Filename: "{app}\post-install.bat"; WorkingDir: "{app}"
+Filename: "{app}\post-install.bat"; WorkingDir: "{app}"; Flags: runascurrentuser
 Filename: "{app}\{#MyAppExeName}"; Flags: nowait postinstall skipifsilent runascurrentuser; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"
 
 [Dirs]
