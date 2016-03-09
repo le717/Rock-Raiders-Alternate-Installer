@@ -17,7 +17,7 @@
 #define MyAppName "LEGO Rock Raiders"
 #define MyAppNameNoR "LEGO Rock Raiders"
 #define MyAppVersion "1.0.0.0"
-#define MyAppPublisher "LEGO Media"
+#define MyAppPublisher "Digitial Design Interactive"
 #define MyAppExeName "LegoRR.exe"
 
 [Setup]
@@ -26,11 +26,11 @@ AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 VersionInfoVersion={#MyAppInstallerVersion}
 AppPublisher={#MyAppPublisher}
-AppCopyright=(C) 1999 {#MyAppPublisher}
+AppCopyright=(c) 1999 {#MyAppPublisher}
 LicenseFile=license.txt
 
-DefaultDirName={pf}\LEGO Media\Games\{#MyAppNameNoR}
-DefaultGroupName=LEGO Media\{#MyAppNameNoR}
+DefaultDirName={pf}\LEGO Media\Games\{#MyAppName}
+DefaultGroupName=LEGO Media\{#MyAppName}
 AllowNoIcons=yes
 
 SetupIconFile=rockraiders.ico
@@ -40,7 +40,7 @@ WizardImageStretch=True
 WizardImageBackColor=clBlack
 
 OutputDir=bin
-OutputBaseFilename={#MyAppNameNoR} Alternate Installer {#MyAppInstallerVersion}
+OutputBaseFilename=LEGO-Rock-Raiders-Alternate-Installer-{#MyAppInstallerVersion}
 
 UninstallFilesDir={app}
 UninstallDisplayName={#MyAppName}
@@ -63,12 +63,14 @@ Name: "English"; MessagesFile: "compiler:Default.isl"
 
 [Messages]
 English.BeveledLabel={#MyAppInstallerName}
-; WelcomeLabel2 is overridden because I'm unsure if every LEGO Rock Raiders
-; disc says version 1.0.0.0 or just mine
-English.WelcomeLabel2=This will install [name] on your computer.%n%nIt is recommended that you close all other applications before continuing.
-; DiskSpaceMBLabel is overridden because it reports
-; an incorrect installation size
-English.DiskSpaceMBLabel=
+
+; DiskSpaceMBLabel is overridden in order to report 
+; a correct installation size
+DiskSpaceMBLabel=
+
+[Tasks]
+Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
 ; Tool needed to extract the CAB
@@ -87,13 +89,9 @@ Source: "{code:GetSourceDrive}EXE\LegoRR.icd"; DestDir: "{app}\EXE"; Flags: exte
 Source: "{code:GetSourceDrive}DirectX6\DirectX6\Directx\D3DRM.DLL"; DestDir: "{app}"; Flags: external ignoreversion
 
 [Icons]
-Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\rockraiders.ico"; Comment: "Run {#MyAppName}"
-Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\rockraiders.ico";
-Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\rockraiders.ico"; Comment: "{#MyAppName}"; Tasks: desktopicon
-
-[Tasks]
-Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "Admin"; Description: "Run {#MyAppName} with Administrator Rights"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\rockraiders.ico"; IconIndex: 0; Comment: "Run {#MyAppName}"
+Name: "{group}\{cm:UninstallProgram,{#MyAppName}}"; Filename: "{uninstallexe}"; IconFilename: "{app}\rockraiders.ico"; IconIndex: 0; Comment: "Uninstall {#MyAppName}"
+Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "{app}\rockraiders.ico"; Comment: "Run {#MyAppName}"; Tasks: desktopicon
 
 [Registry]
 Root: "HKCU"; Subkey: "Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers"; ValueType: string; ValueName: "{app}\{#MyAppExeName}"; ValueData: "RUNASADMIN"; Flags: uninsdeletevalue; Tasks: Admin
