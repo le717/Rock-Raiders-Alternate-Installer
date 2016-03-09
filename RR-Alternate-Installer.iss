@@ -46,7 +46,7 @@ UninstallDisplayName={#MyAppName}
 UninstallDisplayIcon={app}\rockraiders.ico
 CreateUninstallRegKey=yes
 ; This is required so Inno can correctly report the installation size
-UninstallDisplaySize=112820029
+UninstallDisplaySize=156237824
 
 Compression=lzma2/ultra64
 SolidCompression=yes
@@ -65,7 +65,7 @@ English.BeveledLabel={#MyAppInstallerName}
 
 ; DiskSpaceMBLabel is overridden in order to report 
 ; a correct installation size
-DiskSpaceMBLabel=
+DiskSpaceMBLabel=At least 149 MB of free disk space is required.
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
