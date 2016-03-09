@@ -1,19 +1,20 @@
-﻿; LEGO Rock Raiders Alternate Installer
-; Created 2013-2015 Triangle717
-; <http://Triangle717.WordPress.com/>
-; Contains source code from Grim Fandango Setup
-; Copyright (c) 2007-2008 Bgbennyboy
-; <http://quick.mixnmojo.com/>
+;  LEGO Stunt Rally Alternate Installer
+;  Created 2013-2016 Triangle717
+;  <http://Triangle717.WordPress.com/>
+;
+;  Contains source code from Grim Fandango Setup
+;  Copyright (c) 2007-2008 Bgbennyboy
+;  <http://quick.mixnmojo.com/>
 
 ; If any version below the specified version is used for compiling,
 ; this error will be shown.
-#if VER < EncodeVer(5, 5, 2)
-  #error You must use Inno Setup 5.5.2 or newer to compile this script
+#if VER < EncodeVer(5, 5, 8)
+  #error You must use Inno Setup 5.5.8 or newer to compile this script
 #endif
 
-#define MyAppInstallerName "LEGO® Rock Raiders Alternate Installer"
+#define MyAppInstallerName "LEGO Rock Raiders Alternate Installer"
 #define MyAppInstallerVersion "1.0.0"
-#define MyAppName "LEGO® Rock Raiders"
+#define MyAppName "LEGO Rock Raiders"
 #define MyAppNameNoR "LEGO Rock Raiders"
 #define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "LEGO Media"
