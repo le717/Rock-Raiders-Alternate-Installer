@@ -1,4 +1,4 @@
-;  LEGO Stunt Rally Alternate Installer
+;  LEGO Rock Raiders Alternate Installer
 ;  Created 2013-2016 Triangle717
 ;  <http://Triangle717.WordPress.com/>
 ;
