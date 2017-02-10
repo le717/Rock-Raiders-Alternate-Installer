@@ -5,7 +5,6 @@ del /F /Q LegoRR.exe LegoRR.icd
 del /F /Q Autorun.exe Autorun.inf
 del /F /Q Data\Delme.dat Data\cd.key
 
-rem Use the x86 exe
 echo Installing x86 exe...
 move EXE\LegoRR.exe .\
 move EXE\LegoRR.icd .\
