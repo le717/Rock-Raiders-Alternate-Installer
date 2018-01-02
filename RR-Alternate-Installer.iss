@@ -13,7 +13,7 @@
 #endif
 
 #define MyAppInstallerName "LEGO Rock Raiders Alternate Installer"
-#define MyAppInstallerVersion "1.0.0"
+#define MyAppInstallerVersion "1.1.0"
 #define MyAppName "LEGO Rock Raiders"
 #define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "Digital Design Interactive"
