@@ -1,5 +1,5 @@
 ;  LEGO Rock Raiders Alternate Installer
-;  Created 2013-2016 Triangle717
+;  Created 2013-2019 Triangle717
 ;  <http://Triangle717.WordPress.com/>
 ;
 ;  Contains source code from Grim Fandango Setup
@@ -8,12 +8,12 @@
 
 ; If any version below the specified version is used for compiling,
 ; this error will be shown.
-#if VER < EncodeVer(5, 5, 8)
-  #error You must use Inno Setup 5.5.8 or newer to compile this script
+#if VER < EncodeVer(5, 6, 1)
+  #error You must use Inno Setup 5.6.1 or newer to compile this script
 #endif
 
 #define MyAppInstallerName "LEGO Rock Raiders Alternate Installer"
-#define MyAppInstallerVersion "1.1.0"
+#define MyAppInstallerVersion "1.1.1"
 #define MyAppName "LEGO Rock Raiders"
 #define MyAppVersion "1.0.0.0"
 #define MyAppPublisher "Digital Design Interactive"
@@ -76,9 +76,8 @@ Source: "{code:GetSourceDrive}\data1.cab"; DestDir: "{app}"; Flags: external ign
 Source: "{code:GetSourceDrive}\data1.hdr"; DestDir: "{app}"; Flags: external ignoreversion deleteafterinstall skipifsourcedoesntexist
 Source: "{code:GetSourceDrive}\EXE\LegoRR.exe"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
 Source: "{code:GetSourceDrive}\EXE\LegoRR.icd"; DestDir: "{app}\EXE"; Flags: external ignoreversion skipifsourcedoesntexist
-; TODO Use DLL from Cafeteria
-Source: "{code:GetSourceDrive}\DirectX6\DirectX6\Directx\D3DRM.DLL"; DestDir: "{app}"; Flags: external ignoreversion skipifsourcedoesntexist
 
+Source: "Tools\d3drm.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Tools\CABExtract\i5comp.exe"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "Tools\CABExtract\ZD51145.DLL"; DestDir: "{app}"; Flags: deleteafterinstall
 Source: "Tools\post-install.bat"; DestDir: "{app}"; Flags: deleteafterinstall
